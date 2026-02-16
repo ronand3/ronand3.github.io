@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Template</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        :root {
+            /* Color Palette - 5 Core Colors */
+            --color-primary: #054A91;     /* Steel Azure - Main Brand Color */
+            --color-secondary: #3E7CB1;   /* Steel Blue - Complementary Action Color */
+            --color-accent: #81A4CD;      /* Wisteria Blue - Highlight / Warning Color */
+            --color-neutral: #575A5D;     /* Alice Blue - Neutral Text and Background */
+            --color-highlight: #F17300;   /* Harvest Orange - Accent / Attention Color */
+            
+            /* Derived Colors for Flexibility */
+            --color-background: color-mix(in srgb, var(--color-neutral) 10%, white);
+            --color-text-dark: var(--color-neutral);
+            --color-text-light: white;
+
+            /* Typography */
+            --font-primary: 'Manrope',sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+
+            /*Typography Scale*/
+            --text-base: 1rem;
+            --text-scale:1.25;
+
+            --text-sm:calc(var(--text-base)/var(--text-scale));
+            --text-body: var(--text-base);
+            --text-h3: calc(var(--text-base) * var(--text-scale));
+            --text-h2: calc(var(--text-h3) * var(--text-scale));
+            --text-h1: calc(var(--text-h2) * var(--text-scale));
+           
+            /* Spacing System */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            background-color: var(--color-background);
+            color: var(--color-text-dark);
+            padding: var(--spacing-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography Styles */
+        h1 {
+            font-family: var(--font-primary);
+            font-size: var(--text-h1);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        h2 {
+            font-family: var(--font-primary);
+            font-size: var(--text-h2);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+
+        h3 {
+            font-family: var(--font-primary);
+            font-size: var(--text-h3);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-accent);
+        }
+
+        .body-text {
+            font-size: var(--text-body);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .small-text {
+            font-size: var(--text-sm);
+            color: color-mix(in srgb, var(--color-text-dark) 70%, transparent);
+        }
+
+        /* Color Palette Section */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .color-swatch {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Component Styles */
+        .button {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: background-color 0.3s ease, transform 0.2s;
+            border: 2px solid transparent;
+            font-weight: 600;
+            font-family: var(--font-secondary);
+        }
+
+        .button:hover {
+            background-color: color-mix(in srgb, var(--color-primary) 80%, black);
+            border-color: var(--color-secondary);
+            transform: scale(1.05);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+            background-color: var(--color-secondary);
+        }
+
+        .link {
+            color: var(--color-secondary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.3s ease, text-decoration-color 0.3s;
+            font-family: var(--font-secondary);
+
+        }
+
+        .link:hover {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-decoration-color: var(--color-highlight);
+        }
+
+        .link:visited {
+           outline: 3px solid var(--color-highlight);
+           outline-offset: 3px;
+        }
+
+        input[type="text"] {
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--color-neutral);
+            font-size: var(--text-body);
+            margin-top: var(--spacing-xs);
+            font-family: var(--font-secondary);
+}
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+            outline: 3px solid var(--color-highlight);
+            outline-offset: 2px;
+}
+
+        /* Spacing Demonstration */
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .spacing-block {
+            background-color: var(--color-primary);
+            height: 50px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Design System Template</h1>
+
+        <section>
+            <h2>Color Palette</h2>
+            <div class="color-palette">
+                <div class="color-swatch" style="background-color: var(--color-primary); color: var(--color-text-light);">
+                    <strong>Primary Color</strong>
+                    <p>#054A91</p>
+                    <small>Contrast Ratio: 1.97:1</small>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-secondary); color: var(--color-text-light);">
+                    <strong>Secondary Color</strong>
+                    <p>#3E7CB1</p>
+                    <small>Contrast Ratio: 1.72:1</small>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-accent); color: var(--color-text-light);">
+                    <strong>Accent Color</strong>
+                    <p>#81A4CD</p>
+                    <small>Contrast Ratio: 2.01:1</small>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-neutral); color: var(--color-text-light);">
+                    <strong>Neutral Color</strong>
+                    <p>#575A5D</p>
+                    <small>Contrast Ratio: 2.37:1</small>
+                </div>
+                <div class="color-swatch" style="background-color: var(--color-highlight); color: var(--color-text-dark);">
+                    <strong>Highlight Color</strong>
+                    <p>#F17300</p>
+                    <small>Contrast Ratio: 3:1</small>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Typography</h2>
+            <h1>Heading 1 - Manrope</h1>
+            <h2>Heading 2 - Manrope</h2>
+            <h3>Heading 3 - Manrope</h3>
+            <p class="body-text">Body Text - Body text is set in Inter for maximum readability and UI clarity.</p>
+            <p class="small-text">Small Text - scaled with modular ratio (1.25).</p>
+        </section>
+
+        <section>
+            <h2>Spacing System</h2>
+            <div class="spacing-demo">
+                <div class="spacing-block" style="width: var(--spacing-xs)"></div>
+                <div class="spacing-block" style="width: var(--spacing-sm)"></div>
+                <div class="spacing-block" style="width: var(--spacing-md)"></div>
+                <div class="spacing-block" style="width: var(--spacing-lg)"></div>
+                <div class="spacing-block" style="width: var(--spacing-xl)"></div>
+            </div>
+            <p>Spacing blocks demonstrating size variations from xs to xl</p>
+        </section>
+
+        <section>
+           <h2>Interactive Components</h2>
+           <br><br>
+           <a href="#" class="button">Primary Button</a>
+           <br><br>
+           <a href="#" class="link">Standard Link</a>
+           <br><br>
+           <label for="name">Form Input Example</label><br>
+           <input type="text" id="name" placeholder="Enter your name">
+        </section>
+    </div>
+</body>
+</html>
