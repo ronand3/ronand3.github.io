@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Story</title>
+
+    <style>
+    *{
+        box-sizing:border-box;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        margin:0;
+        background:#f4f4f4;
+        line-height:1.6;
+        display:flex;
+        justify-content:center;
+    }
+
+    main{
+        max-width:800px;
+        width:100%;
+        padding:20px;
+    }
+
+    .container{
+        background:#085cec;
+        padding:25px;
+        border-radius:8px;
+        margin-top:40px;
+        color:white;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    label{
+        display:block;
+        margin-bottom:5px;
+        font-weight:bold;
+    }
+    input[type="text"]{
+        width:100%;
+        padding:10px;
+        margin-bottom:15px;
+        border-radius:5px;
+        border:1px solid #ccc;
+    }
+    fieldset{
+        border:none;
+        margin-bottom:15px;
+    }
+    fieldset label{
+        margin-right:10px;
+        display:inline;
+    }
+    button{
+        background:white;
+        color:black;
+        border:none;
+        padding:12px 20px;
+        border-radius:5px;
+        cursor:pointer;
+        font-size:16px;
+        display:block;
+        margin:10px auto;
+    }
+    button:hover{
+        background:#064bb5;
+    }
+    .story{
+        margin-top:20px;
+        padding:20px;
+        background:#f4f4f4;
+        border-radius:8px;
+        visibility:hidden;
+    }
+    @media (max-width:450px){
+        main{
+            padding:15px;
+        }
+        h1{
+            font-size:1.6rem;
+        }
+    }
+    </style>
+</head>
+
+<body> 
+<main>
+<div class="container">
+
+    <h1>Random Story Generator</h1>
+
+    <div>
+      <label for="custom-name">Enter custom name:</label>
+      <input id="custom-name" type="text" />
+    </div>
+
+    <fieldset>
+      <legend>Choose locale:</legend>
+      <label for="us">US</label>
+      <input id="us" type="radio" name="uk-us" value="us" checked />
+      
+      <label for="uk">UK</label>
+      <input id="uk" type="radio" name="uk-us" value="uk" />
+    </fieldset>
+
+    <div>
+      <button class="generate">Generate random story</button>
+    </div>
+
+    <p class="story"></p>
+
+</div>
+</main>
+
+<script> 
+const customName = document.getElementById("custom-name");
+const generateBtn = document.querySelector(".generate");
+const story = document.querySelector(".story");
+
+function randomValueFromArray(array) {
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+}
+
+const characters = ["Porky", "Travis Hunter", "Boulder"];
+const places = ["The hill", "Pearl Street", "the Grandview Home"];
+const events = [
+  "spontaneously combusted",
+  "inked",
+  "took a deep breath and did a lap",
+];
+
+function returnRandomStoryString() {
+  const randomCharacter = randomValueFromArray(characters);
+  const randomPlace = randomValueFromArray(places);
+  const randomEvent = randomValueFromArray(events);
+
+  let storyText = `It was bright and early at 11am in Boulder, the sun was out and it was 94 Fahrenheit, so ${randomCharacter} went for a wander. When he got to ${randomPlace}, he started grunting and yelling at the top of his lungs for a few moments, then ${randomEvent}. Cricket saw the whole thing, but was not surprised — ${randomCharacter} weighs 300 pounds, and it was a hot day.`;
+
+  return storyText;
+}
+
+generateBtn.addEventListener("click", generateStory);
+
+function generateStory() {
+  let newStory = returnRandomStoryString();
+
+  if (customName.value !== "") {
+    const name = customName.value;
+    newStory = newStory.replace(/Cricket/g, name);
+  }
+
+  if (document.getElementById("uk").checked) {
+    const weight = `${Math.round(300 / 14)} stone`;
+    const temperature = `${Math.round((94 - 32) * (5 / 9))} Celsius`;
+    newStory = newStory.replace("300 pounds", weight);
+    newStory = newStory.replace("94 Fahrenheit", temperature);
+  }
+
+  story.textContent = newStory;
+  story.style.visibility = "visible";
+}
+</script>
+
+</body>
+</html>
