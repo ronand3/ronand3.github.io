@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 let gameState = "start";
 let volume = 50;
 
-// player (smaller + centered)
+
 let imgX = 362;
 let imgY = 275;
 let imgSpeed = 6;
@@ -43,14 +43,12 @@ canvas.addEventListener("click", (e) => {
     restartGame();
   }
 
-  // confirm button
-  if (gameState === "playing") {
+ if (gameState === "playing") {
     if (mouseX >= 650 && mouseX <= 780 && mouseY >= 20 && mouseY <= 65) {
       gameState = "confirmed";
     }
   }
-
-  // reset button
+  
   if (gameState === "confirmed") {
     if (mouseX >= 325 && mouseX <= 475 && mouseY >= 310 && mouseY <= 365) {
       resetToStart();
@@ -139,11 +137,11 @@ function updateGame() {
       } else {
         volume += 1;
       }
-
+      
       volume = Math.max(0, Math.min(100, volume));
       spawnBubble(i);
     }
-
+    
     if (bubbleY[i] > canvas.height) {
       spawnBubble(i);
     }
@@ -209,7 +207,7 @@ function spawnBubble(i) {
   bubbleSize[i] = Math.random() * 10 + 15;
   bubbleSpeed[i] = Math.random() * 1.5 + 1.5;
 
-  // 50/50 red or blue
+
   bubbleType[i] = Math.random() < 0.5 ? "blue" : "red";
 }
 
